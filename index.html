@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sereluniva: a calm planner app for calendar, diary, notes and recipes</title>
+<meta name="description" content="A minimalist sunflower-pastel planner you install on your phone, tablet or computer. Calendar, diary, daily notes and recipes. Pay once, no account, no subscription.">
+<meta property="og:title" content="Sereluniva: a calm planner app">
+<meta property="og:description" content="Calendar, diary, daily notes and recipes in one calm, sunny place. Pay once, no account, no subscription.">
+<meta property="og:image" content="img/wide.jpg">
+<meta name="theme-color" content="#FFF6D6">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#FFF6D6;--bg2:#FFFDF2;--ink:#3A2C12;--ink2:#6B5320;--line:#EBD68A;--sun:#F4C542;--sun2:#FFE48A;--dark:#3A2C12;--gutter:max(20px,env(safe-area-inset-left,0px));color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;-webkit-text-size-adjust:100%;padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--sun);color:var(--ink);font-weight:600;font-size:17px;padding:14px 26px;border-radius:999px;border:2px solid var(--sun);text-decoration:none;cursor:pointer;font-family:inherit}
+.btn:hover{background:#EDB92E;border-color:#EDB92E}
+.btn.ghost{background:transparent;border-color:var(--line)}
+.btn[aria-disabled="true"]{background:var(--sun2);border-color:var(--sun2);color:var(--ink2);cursor:default}
+header{position:sticky;top:0;z-index:5;background:rgba(255,246,214,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Fraunces,Georgia,serif;font-weight:700;font-size:24px}
+.brand img{width:34px;height:34px;border-radius:9px}
+nav{display:flex;align-items:center;gap:22px;font-size:15px;font-weight:500}
+nav a{text-decoration:none;color:var(--ink2)}
+nav a:hover{color:var(--ink)}
+.hero{padding:56px 0 40px;overflow-x:clip}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
+.eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink2)}
+.hero h1{font-size:clamp(40px,6.4vw,68px);letter-spacing:-.02em;margin:12px 0 16px}
+.hero p.lead{font-size:20px;max-width:34em;color:var(--ink)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px}
+.price{font-size:15px;color:var(--ink2)}
+.price b{color:var(--ink);font-size:17px}
+.phones{position:relative;display:flex;justify-content:center;align-items:flex-end;padding:24px 22px}
+.phone{border:6px solid var(--dark);border-radius:30px;overflow:hidden;background:#fff;box-shadow:0 18px 40px rgba(58,44,18,.18);width:min(46%,230px)}
+.phone.mid{transform:translateY(-14px);z-index:2;margin:0 -8%}
+.phone.l{transform:rotate(-4deg)}
+.phone.r{transform:rotate(4deg)}
+.trust{background:var(--dark);color:#FFF6D6}
+.trust ul{list-style:none;margin:0;padding:18px 20px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;font-weight:600;font-size:15px}
+section.block{padding:64px 0}
+section.block h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:10px}
+.sub{font-size:18px;color:var(--ink2);max-width:36em;margin-bottom:30px}
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:var(--bg2);border:2px solid var(--line);border-radius:24px;padding:24px}
+.card h3{font-size:26px;margin-bottom:8px}
+.card p{font-size:16.5px}
+.card .tag{margin-top:10px;font-size:14.5px;font-weight:600;color:var(--ink2)}
+.chip{display:inline-flex;width:48px;height:48px;border-radius:14px;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
+.shots{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 20px;margin:0 -20px;-webkit-overflow-scrolling:touch}
+.shots figure{margin:0;flex:0 0 auto;width:min(66vw,250px);scroll-snap-align:center}
+.shots .phone{width:100%}
+.shots figcaption{text-align:center;margin-top:10px;font-weight:600;font-size:15px;color:var(--ink2)}
+.steps{counter-reset:s;display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr));padding:0;margin:0;list-style:none}
+.steps li{counter-increment:s;background:var(--bg2);border:2px solid var(--line);border-radius:24px;padding:24px}
+.steps li::before{content:counter(s);display:inline-flex;width:38px;height:38px;border-radius:50%;background:var(--sun);font-weight:700;align-items:center;justify-content:center;margin-bottom:12px}
+.steps b{display:block;font-family:Fraunces,Georgia,serif;font-size:22px;margin-bottom:4px}
+.note{background:var(--dark);color:#FFF6D6;border-radius:26px;padding:30px 32px}
+.note h2{font-size:30px;margin-bottom:12px}
+.note ul{margin:0;padding-left:20px;display:grid;gap:8px}
+details{background:var(--bg2);border:2px solid var(--line);border-radius:18px;padding:16px 20px}
+details+details{margin-top:12px}
+summary{cursor:pointer;font-weight:600;font-size:17px}
+details p{margin-top:10px;color:var(--ink2)}
+.final{text-align:center;padding:64px 0}
+.final h2{font-size:clamp(30px,4.4vw,46px);margin-bottom:14px}
+.final .cta{justify-content:center}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;font-size:14.5px;color:var(--ink2)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+@media (max-width:860px){
+ .hero .wrap{grid-template-columns:1fr}
+ .g3,.steps{grid-template-columns:1fr}
+ .g2{grid-template-columns:1fr}
+ nav a.hide-s{display:none}
+ .hero{padding-top:36px}
+}
+@media (max-width:420px){ .brand{font-size:21px} .btn{padding:12px 20px;font-size:16px} header .btn{display:none} }
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <a class="brand" href="#top"><img src="icon-192.png" alt="" width="34" height="34">Sereluniva</a>
+  <nav aria-label="Main">
+   <a class="hide-s" href="#who">Who it's for</a>
+   <a class="hide-s" href="#inside">What's inside</a>
+   <a class="hide-s" href="#faq">Questions</a>
+   <a class="btn buy-link" href="#buy" data-buy>Get Sereluniva</a>
+  </nav>
+ </div>
+</header>
+
+<main id="top">
+<section class="hero">
+ <div class="wrap">
+  <div>
+   <div class="eyebrow">A planner for every kind of day</div>
+   <h1>Your whole day on one calm, sunny page.</h1>
+   <p class="lead">Calendar, diary, daily notes and recipes together, in a soft sunflower look. No account, no subscription, nothing to log in to.</p>
+   <div class="cta">
+    <a class="btn buy-link" href="#buy" data-buy>Get Sereluniva</a>
+    <span class="price"><b>USD 14</b> launch price, then USD 19. Pay once.</span>
+   </div>
+  </div>
+  <div class="phones" aria-label="Sereluniva on a phone">
+   <div class="phone l"><img src="img/calendar.jpg" alt="Calendar screen with a week view" width="430" height="900"></div>
+   <div class="phone mid"><img src="img/home.jpg" alt="Home screen showing today, reminders and tasks" width="430" height="900"></div>
+   <div class="phone r"><img src="img/notes.jpg" alt="Daily notes screen" width="430" height="900"></div>
+  </div>
+ </div>
+</section>
+
+<div class="trust"><ul>
+ <li>No account</li><li>No subscription</li><li>Works offline</li><li>Your data stays on your device</li>
+</ul></div>
+
+<section class="block" id="who">
+ <div class="wrap">
+  <h2>Made for everyone's routine</h2>
+  <p class="sub">One quiet place for the things you do every day, whatever your day looks like.</p>
+  <div class="grid g3">
+   <div class="card"><span class="chip" style="background:#FFE48A" aria-hidden="true">🎓</span><h3>Students</h3><p>Put exams and deadlines on the calendar, repeat weekly classes, and add a checklist of what to bring.</p><p class="tag">Pay once. No monthly bill.</p></div>
+   <div class="card"><span class="chip" style="background:#D3E6F0" aria-hidden="true">💼</span><h3>Working adults</h3><p>A Home screen shows today, reminders and unfinished tasks at a glance. Send events to your phone's calendar for alerts.</p><p class="tag">Quiet and distraction-free.</p></div>
+   <div class="card"><span class="chip" style="background:#F8D7DA" aria-hidden="true">🏠</span><h3>Parents and families</h3><p>Keep school events, birthdays and weekly routines that repeat on their own. Scale a recipe to the people at the table.</p><p class="tag">One place for the household's dates.</p></div>
+   <div class="card"><span class="chip" style="background:#DCEBC2" aria-hidden="true">🍲</span><h3>Home cooks</h3><p>Save a recipe from a TikTok link, a recipe website, pasted text or a screenshot. It sorts into ingredients and steps.</p><p class="tag">Your own recipe book.</p></div>
+   <div class="card"><span class="chip" style="background:#E6DCF3" aria-hidden="true">✏️</span><h3>Diary keepers</h3><p>Write each day with a mood, tags and gentle prompts. Lock the diary with a PIN.</p><p class="tag">Your words stay on your device.</p></div>
+   <div class="card"><span class="chip" style="background:#FFD9B8" aria-hidden="true">☀️</span><h3>Anyone who likes it simple</h3><p>No sign-up, no passwords and no feeds. Open it, write, and close it.</p><p class="tag">Calm by design, for any age.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="block" id="inside" style="background:var(--bg2);border-block:1px solid var(--line)">
+ <div class="wrap">
+  <h2>What's inside</h2>
+  <p class="sub">Everything you need to plan, write and cook, and nothing you don't.</p>
+  <div class="grid g2">
+   <div class="card"><h3>Home</h3><p>Today, reminders and unfinished tasks on one screen.</p></div>
+   <div class="card"><h3>Calendar</h3><p>Week, month and two-month views, repeating events and birthdays, with notes and a checklist on every event.</p></div>
+   <div class="card"><h3>Calendar alerts</h3><p>Send an event to your phone's calendar app and it rings the reminder, even when Sereluniva is closed.</p></div>
+   <div class="card"><h3>Diary</h3><p>Mood, tags and gentle prompts, with an optional PIN lock.</p></div>
+   <div class="card"><h3>Daily notes</h3><p>Quick to-dos and notes on one dotted page.</p></div>
+   <div class="card"><h3>Important dates</h3><p>Birthdays, deadlines and the dates you can't forget, in one list.</p></div>
+   <div class="card"><h3>Recipes</h3><p>Import from a TikTok link, a recipe website, pasted text or a screenshot. Diet tags, serving scaling and a print view.</p></div>
+   <div class="card"><h3>Search, print, backup</h3><p>Search across everything, print clean pages, and save or restore a backup file whenever you like.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="block" id="look">
+ <div class="wrap">
+  <h2>A look inside</h2>
+  <p class="sub">Swipe to see each screen.</p>
+ </div>
+ <div class="wrap">
+  <div class="shots" tabindex="0" aria-label="Screenshots, scroll sideways">
+   <figure><div class="phone"><img src="img/home.jpg" alt="Home screen" width="430" height="900" loading="lazy"></div><figcaption>Home</figcaption></figure>
+   <figure><div class="phone"><img src="img/calendar.jpg" alt="Calendar" width="430" height="900" loading="lazy"></div><figcaption>Calendar</figcaption></figure>
+   <figure><div class="phone"><img src="img/diary.jpg" alt="Diary" width="430" height="900" loading="lazy"></div><figcaption>Diary</figcaption></figure>
+   <figure><div class="phone"><img src="img/notes.jpg" alt="Daily notes" width="430" height="900" loading="lazy"></div><figcaption>Daily notes</figcaption></figure>
+   <figure><div class="phone"><img src="img/important.jpg" alt="Important dates" width="430" height="900" loading="lazy"></div><figcaption>Important dates</figcaption></figure>
+   <figure><div class="phone"><img src="img/recipes.jpg" alt="Recipes" width="430" height="900" loading="lazy"></div><figcaption>Recipes</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section class="block" id="how" style="background:var(--bg2);border-block:1px solid var(--line)">
+ <div class="wrap">
+  <h2>How it works</h2>
+  <p class="sub">Sereluniva is a web app, not an app-store download. It takes about a minute to set up.</p>
+  <ol class="steps">
+   <li><b>Buy once</b>You receive a short guide with your app address.</li>
+   <li><b>Add it to your home screen</b>Open the address in Safari (iPhone, iPad) or Chrome (Android, computer) and choose Add to Home Screen or Install.</li>
+   <li><b>Use it anywhere</b>It opens like an app, full screen, and works offline.</li>
+  </ol>
+ </div>
+</section>
+
+<section class="block">
+ <div class="wrap">
+  <div class="note">
+   <h2>Good to know</h2>
+   <ul>
+    <li>Your entries are stored on your own device. Save a backup file from Settings now and then.</li>
+    <li>The diary PIN is a screen lock, not encryption. Backup files are not encrypted.</li>
+    <li>Recipe import reads TikTok links, recipe websites, pasted text and screenshots. Instagram and Facebook posts cannot be imported.</li>
+    <li>Sereluniva cannot send notifications while it is closed. Use the calendar button on an event to get alerts from your phone's calendar app.</li>
+    <li>One purchase is for personal use by one person.</li>
+   </ul>
+  </div>
+ </div>
+</section>
+
+<section class="block" id="faq" style="padding-top:0">
+ <div class="wrap" style="max-width:780px">
+  <h2 style="margin-bottom:22px">Questions</h2>
+  <details><summary>Is there a subscription?</summary><p>No. You pay once.</p></details>
+  <details><summary>Do I need an account?</summary><p>No. There is nothing to sign up for or log in to.</p></details>
+  <details><summary>Does it work offline?</summary><p>Yes, after you install it. Recipe link import needs internet.</p></details>
+  <details><summary>Where is my data?</summary><p>Only on your device. Sereluniva has no accounts and no tracking, and we never see your entries.</p></details>
+  <details><summary>Can I move to a new phone?</summary><p>Yes. Save a backup file on the old phone, install Sereluniva on the new one, then restore the backup in Settings.</p></details>
+  <details><summary>Is it in the App Store or Google Play?</summary><p>No. You install it from your browser. The guide you receive shows how, for iPhone, iPad, Android and computers.</p></details>
+  <details><summary>What if it doesn't work on my device?</summary><p>Email us within 14 days for a full refund. See the <a href="refund.html">refund terms</a>.</p></details>
+ </div>
+</section>
+
+<section class="final" style="background:var(--bg2);border-top:1px solid var(--line)">
+ <div class="wrap">
+  <h2>Start with a calmer day.</h2>
+  <p class="sub" style="margin:0 auto 22px">One payment. No account. Yours to keep.</p>
+  <div class="cta"><a class="btn buy-link" href="#buy" data-buy>Get Sereluniva</a></div>
+  <p class="price" style="margin-top:14px"><b>USD 14</b> launch price, then USD 19</p>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span>© 2026 Sereluniva. [Your name or business name]</span>
+  <span><a href="privacy.html">Privacy</a> &nbsp; <a href="refund.html">Refunds</a> &nbsp; <a href="mailto:your@email.com">your@email.com</a></span>
+ </div>
+</footer>
+
+<script>
+/* Put your Lemon Squeezy product link here once the store is live, for example
+   https://yourstore.lemonsqueezy.com/buy/xxxxxxxx
+   While it is empty, the buttons show "Coming soon". */
+var BUY_URL = "";
+(function(){
+  var links = document.querySelectorAll("[data-buy]");
+  for (var i = 0; i < links.length; i++) {
+    var a = links[i];
+    if (BUY_URL) { a.href = BUY_URL; a.rel = "noopener"; }
+    else { a.textContent = "Coming soon"; a.setAttribute("aria-disabled", "true"); a.removeAttribute("href"); }
+  }
+})();
+</script>
+</body>
+</html>
